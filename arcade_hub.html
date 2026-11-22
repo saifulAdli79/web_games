@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusat Permainan Arcade Retro - Pelayar Web Chrome</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #080c16;
+      color: #f0f4fc;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .glow-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: 
+        radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(255, 230, 0, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(255, 119, 0, 0.12) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      z-index: 1;
+    }
+    .title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+    }
+    .title span {
+      background: linear-gradient(135deg, #00f0ff, #ffe600, #ff7700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: #8c9cb8;
+      font-size: 1.1rem;
+      margin-top: 8px;
+    }
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      width: 100%;
+      z-index: 1;
+    }
+    .game-card {
+      background: rgba(18, 24, 38, 0.8);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .game-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+    .game-card.tetris:hover {
+      border-color: #00f0ff;
+      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.3);
+    }
+    .game-card.pacman:hover {
+      border-color: #ffe600;
+      box-shadow: 0 15px 35px rgba(255, 230, 0, 0.3);
+    }
+    .game-card.bomberman:hover {
+      border-color: #ff7700;
+      box-shadow: 0 15px 35px rgba(255, 119, 0, 0.3);
+    }
+    .game-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+    }
+    .game-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .game-card.tetris .game-name { color: #00f0ff; }
+    .game-card.pacman .game-name { color: #ffe600; }
+    .game-card.bomberman .game-name { color: #ff7700; }
+    .game-desc {
+      color: #9cb0cc;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .features-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: #7b8ea8;
+      margin-bottom: 22px;
+      text-align: left;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 12px 16px;
+      border-radius: 10px;
+    }
+    .features-list li {
+      margin-bottom: 6px;
+    }
+    .play-btn {
+      width: 100%;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .play-btn.tetris {
+      background: linear-gradient(135deg, #00f0ff, #0077ff);
+      color: #080c16;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    }
+    .play-btn.pacman {
+      background: linear-gradient(135deg, #ffe600, #ff9900);
+      color: #080c16;
+      box-shadow: 0 0 20px rgba(255, 230, 0, 0.4);
+    }
+    .play-btn.bomberman {
+      background: linear-gradient(135deg, #ff7700, #ff1100);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255, 119, 0, 0.4);
+    }
+    .play-btn:hover {
+      transform: scale(1.03);
+    }
+    .footer-note {
+      margin-top: 40px;
+      color: #6e829e;
+      font-size: 0.9rem;
+      text-align: center;
+      z-index: 1;
+    }
+    .footer-note strong {
+      color: #00f0ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-bg"></div>
+
+  <header class="header">
+    <h1 class="title">PUSAT ARCADE <span>RETRO</span></h1>
+    <p class="subtitle">Koleksi Permainan Klasik Berwarna-Warni untuk Pelayar Web Chrome</p>
+  </header>
+
+  <main class="games-grid">
+    <!-- Kad Tetris -->
+    <div class="game-card tetris">
+      <div class="game-icon">🧱</div>
+      <h2 class="game-name">TETRIS WARNA-WARNI</h2>
+      <p class="game-desc">
+        Susun blok Tetromino neon dengan pantas! Lengkap dengan fungsi Hold, bayang Ghost Piece, letupan partikel dan bunyi Web Audio.
+      </p>
+      <ul class="features-list">
+        <li>✨ 7 Warna Tetromino Neon</li>
+        <li>🔄 Putaran Wall-Kick & 7-Bag RNG</li>
+        <li>⌨️ Kawalan Keyboard PC Lengkap</li>
+      </ul>
+      <a href="index.html" class="play-btn tetris">MAIN TETRIS ▶</a>
+    </div>
+
+    <!-- Kad Pac-Man -->
+    <div class="game-card pacman">
+      <div class="game-icon">🟡</div>
+      <h2 class="game-name">PAC-MAN KLASIK</h2>
+      <p class="game-desc">
+        Jelajahi labirin biru neon, telan semua titik makanan, dan gunakan Energizer untuk memakan 4 hantu nakal (Blinky, Pinky, Inky & Clyde)!
+      </p>
+      <ul class="features-list">
+        <li>👻 4 Hantu dengan AI Berbeza</li>
+        <li>⚡ Titik Kuasa Besar (Energizer)</li>
+        <li>🔊 Kesan Bunyi Waka-Waka Sintesis</li>
+      </ul>
+      <a href="pacman/index.html" class="play-btn pacman">MAIN PAC-MAN ▶</a>
+    </div>
+
+    <!-- Kad Bomberman -->
+    <div class="game-card bomberman">
+      <div class="game-icon">💣</div>
+      <h2 class="game-name">BOMBERMAN KLASIK</h2>
+      <p class="game-desc">
+        Letakkan bom bersilang, musnahkan batu bata untuk mencari item kuasa tersembunyi, hapuskan musuh Ballom dan buka pintu ke stage baharu!
+      </p>
+      <ul class="features-list">
+        <li>🔥 Letupan Bersilang & Rantaian Bom</li>
+        <li>🎁 Power-Up: +Bom, +Api, +Laju</li>
+        <li>🚪 Pintu Rahsia Pelbagai Stage</li>
+      </ul>
+      <a href="bomberman/index.html" class="play-btn bomberman">MAIN BOMBERMAN ▶</a>
+    </div>
+  </main>
+
+  <footer class="footer-note">
+    <p>💡 Semua permainan dibangunkan dengan HTML5 Canvas & Web Audio API tanpa sebarang pemasangan fail tambahan.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Pac-Man Doodle - Edisi Rasmi Chrome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <div class="game-container">
+    <!-- Navigasi Atas -->
+    <header class="game-header">
+      <div class="top-nav">
+        <a href="../arcade_hub.html" class="nav-link">🕹️ Pusat Arcade</a>
+        <a href="../index.html" class="nav-link">🧱 Tetris</a>
+        <a href="../bomberman/index.html" class="nav-link">💣 Bomberman</a>
+      </div>
+
+      <!-- Google Pac-Man Title Banner -->
+      <div class="google-logo-wrapper">
+        <h1 class="google-title">
+          <span class="g-blue">G</span>
+          <span class="o-red">o</span>
+          <span class="o-yellow">o</span>
+          <span class="g-blue">g</span>
+          <span class="l-green">l</span>
+          <span class="e-red">e</span>
+          <span class="pac-tag">PAC-MAN™</span>
+        </h1>
+        <p class="subtitle">Edisi Khas Ulang Tahun Ke-30 (Google Search Arcade)</p>
+      </div>
+
+      <!-- Butang Pilihan Mod Peta -->
+      <div class="mode-selector">
+        <button id="modeGoogleBtn" class="mode-btn active">🌐 Mod Google Doodle ("GOOGLE")</button>
+        <button id="modeClassicBtn" class="mode-btn">🕹️ Mod Labirin Klasik (1980)</button>
+      </div>
+    </header>
+
+    <!-- Arcade Cabinet Frame -->
+    <div class="arcade-cabinet">
+      <!-- Papan Markah Atas (1UP, HIGH SCORE, 2UP) -->
+      <div class="arcade-scoreboard">
+        <div class="score-block">
+          <span class="score-title">1UP</span>
+          <span class="score-num" id="score">00</span>
+        </div>
+        <div class="score-block center">
+          <span class="score-title">HIGH SCORE</span>
+          <span class="score-num" id="highScore">00</span>
+        </div>
+        <div class="score-block right">
+          <span class="score-title">2UP</span>
+          <span class="score-num">00</span>
+        </div>
+      </div>
+
+      <!-- Canvas Skrin Permainan -->
+      <div class="canvas-wrapper">
+        <canvas id="pacmanCanvas" width="870" height="255"></canvas>
+
+        <!-- Overlay Skrin (Insert Coin / Mula) -->
+        <div id="overlay" class="overlay">
+          <div class="overlay-content">
+            <h2 id="overlayTitle">PAC-MAN</h2>
+            <p id="overlayMessage">Tekan <strong>INSERT COIN</strong> atau mana-mana anak panah keyboard untuk mula!</p>
+            <button id="startBtn" class="btn btn-insert-coin pulse">INSERT COIN</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bar Kawalan Bawah Google Doodle -->
+      <div class="arcade-footer-bar">
+        <!-- Nyawa Pac-Man -->
+        <div class="lives-panel">
+          <span class="lives-label">NYAWA:</span>
+          <div class="lives-icons" id="livesContainer">
+            <span class="pac-life">🟡</span>
+            <span class="pac-life">🟡</span>
+            <span class="pac-life">🟡</span>
+          </div>
+        </div>
+
+        <!-- Butang Kawalan Tengah -->
+        <div class="center-controls">
+          <button id="insertCoinBtn" class="arcade-btn insert-coin-btn">🪙 INSERT COIN</button>
+          <button id="soundToggleBtn" class="arcade-btn sound-btn">🔊 Bunyi: HIDUP</button>
+        </div>
+
+        <!-- Buah Bonus (Fruit Level) -->
+        <div class="fruit-panel">
+          <span class="fruit-icon" title="Ceri Bonus (100 mata)">🍒</span>
+          <span class="fruit-icon" title="Strawberi (300 mata)">🍓</span>
+          <span class="level-badge" id="levelBadge">LV 1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panduan Kawalan Keyboard -->
+    <footer class="controls-guide">
+      <div class="guide-item">
+        <span class="key-tag"><kbd>▲</kbd> <kbd>▼</kbd> <kbd>◀</kbd> <kbd>▶</kbd></span>
+        <span class="key-desc">atau <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> – Gerak Pac-Man</span>
+      </div>
+      <div class="guide-item">
+        <span class="key-tag"><kbd>SPACE</kbd> / <kbd>ENTER</kbd></span>
+        <span class="key-desc">Insert Coin / Mula Main</span>
+      </div>
+      <div class="guide-item">
+        <span class="key-tag"><kbd>P</kbd> / <kbd>ESC</kbd></span>
+        <span class="key-desc">Henti Seketika (Pause)</span>
+      </div>
+      <div class="guide-item">
+        <span class="key-tag"><kbd>R</kbd></span>
+        <span class="key-desc">Mula Semula</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

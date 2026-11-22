@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bomberman Klasik - Pelayar Chrome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <div class="game-container">
+    <header class="game-header">
+      <div class="top-nav">
+        <a href="../index.html" class="nav-link">◀ Ke Tetris</a>
+        <a href="../pacman/index.html" class="nav-link">Ke Pac-Man ▶</a>
+      </div>
+      <h1 class="glow-title">BOMBERMAN <span>KLASIK</span></h1>
+      <p class="subtitle">Edisi Arcade Retro untuk Pelayar Web Chrome</p>
+    </header>
+
+    <div class="main-layout">
+      <!-- Panel Kiri: Maklumat & Kuasa Item -->
+      <aside class="side-panel left-panel">
+        <div class="card glass-card stat-card">
+          <div class="stat-item highlight">
+            <span class="stat-label">MARKAH</span>
+            <span class="stat-value" id="score">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">NYAWA</span>
+            <div class="lives-container" id="livesContainer">
+              <span class="life-icon">❤️</span>
+              <span class="life-icon">❤️</span>
+              <span class="life-icon">❤️</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">STAGE / LEVEL</span>
+            <span class="stat-value" id="stage">1</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">MUSUH BAKI</span>
+            <span class="stat-value" id="enemyCount">0</span>
+          </div>
+        </div>
+
+        <div class="card glass-card powerups-card">
+          <div class="card-title">STATUS KUASA</div>
+          <div class="powerup-stat">
+            <span>💣 Bilangan Bom:</span>
+            <strong id="maxBombsVal">1</strong>
+          </div>
+          <div class="powerup-stat">
+            <span>🔥 Kuasa Api:</span>
+            <strong id="flameRangeVal">1</strong>
+          </div>
+          <div class="powerup-stat">
+            <span>⚡ Kelajuan:</span>
+            <strong id="speedVal">Biasa</strong>
+          </div>
+        </div>
+
+        <button id="soundToggleBtn" class="btn btn-secondary">🔊 Bunyi: HIDUP</button>
+      </aside>
+
+      <!-- Panel Tengah: Papan Bomberman Arena -->
+      <main class="board-wrapper">
+        <div class="canvas-container">
+          <canvas id="bombermanCanvas" width="520" height="440"></canvas>
+
+          <!-- Overlay Game -->
+          <div id="overlay" class="overlay">
+            <div class="overlay-content">
+              <h2 id="overlayTitle">BOMBERMAN</h2>
+              <p id="overlayMessage">Tekan SPACE untuk meletakkan bom & letupkan dinding batu!</p>
+              <button id="startBtn" class="btn btn-primary pulse">MULA MAIN</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Panel Kanan: Kawalan & Panduan Item -->
+      <aside class="side-panel right-panel">
+        <div class="card glass-card controls-card">
+          <div class="card-title">KAWALAN KEYBOARD</div>
+          <ul class="controls-list">
+            <li>
+              <span class="key-combo"><kbd>▲</kbd> <kbd>▼</kbd> <kbd>◀</kbd> <kbd>▶</kbd></span>
+              <span class="action-desc">Gerak Arah</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></span>
+              <span class="action-desc">Gerak Alternatif</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>SPACE</kbd></span>
+              <span class="action-desc highlight-key">Letak Bom 💣</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>P</kbd> / <kbd>ESC</kbd></span>
+              <span class="action-desc">Jeda (Pause)</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>R</kbd></span>
+              <span class="action-desc">Mula Semula</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card glass-card powerup-legend-card">
+          <div class="card-title">ITEM TERSEMBUNYI</div>
+          <div class="item-legend">
+            <div class="legend-row"><span>💣</span> <strong>Bom Ekstra</strong> (+1 Bom)</div>
+            <div class="legend-row"><span>🔥</span> <strong>Api Besar</strong> (+1 Jarak Letupan)</div>
+            <div class="legend-row"><span>⚡</span> <strong>Kasut Laju</strong> (+Kelajuan Gerak)</div>
+            <div class="legend-row"><span>🚪</span> <strong>Pintu Rahsia</strong> (Buka Stage Seterusnya)</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

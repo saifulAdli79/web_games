@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris Warna-Warni - Chrome Edition</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow"></div>
+  
+  
+  <div class="game-container">
+  
+    <!-- Header Tajuk -->
+    <header class="game-header">
+      <div class="top-nav" style="display: flex; gap: 16px; margin-bottom: 12px;">
+        <a href="arcade_hub.html" class="btn btn-secondary" style="padding: 6px 14px; text-decoration: none; font-size: 0.85rem; width: auto; color: #ffe600; border-color: rgba(255,230,0,0.4);">🕹️ Pusat Arcade</a>
+        <a href="pacman/index.html" class="btn btn-secondary" style="padding: 6px 14px; text-decoration: none; font-size: 0.85rem; width: auto; color: #00f0ff; border-color: rgba(0,240,255,0.4);">🟡 Main Pac-Man</a>
+        <a href="bomberman/index.html" class="btn btn-secondary" style="padding: 6px 14px; text-decoration: none; font-size: 0.85rem; width: auto; color: #ff7700; border-color: rgba(255,119,0,0.4);">💣 Main Bomberman</a>
+      </div>
+      <h1 class="glow-title">TETRIS <span>WARNA-WARNI</span></h1>
+      <p class="subtitle">Main Terus di Pelayar Web Chrome</p>
+    </header>
+
+    <div class="main-layout">
+      <!-- Panel Kiri: Hold & Maklumat -->
+      <aside class="side-panel left-panel">
+        <div class="card glass-card">
+          <div class="card-title">SIMPAN (HOLD)</div>
+          <canvas id="holdCanvas" width="120" height="120"></canvas>
+          <span class="hint-text">Tekan [C] atau [Shift]</span>
+        </div>
+
+        <div class="card glass-card stat-card">
+          <div class="stat-item">
+            <span class="stat-label">MARKAH TINGGI</span>
+            <span class="stat-value" id="highScore">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">MARKAH</span>
+            <span class="stat-value" id="score">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">LEVEL</span>
+            <span class="stat-value" id="level">1</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">BARIS DIHAPUS</span>
+            <span class="stat-value" id="lines">0</span>
+          </div>
+        </div>
+
+        <div class="sound-control">
+          <button id="soundToggleBtn" class="btn btn-secondary">🔊 Bunyi: HIDUP</button>
+        </div>
+      </aside>
+
+      <!-- Panel Tengah: Papan Tetris Utama -->
+      <main class="board-wrapper">
+        <div class="canvas-container">
+          <canvas id="tetrisCanvas" width="300" height="600"></canvas>
+          
+          <!-- Overlay Mula / Tamat / Pause -->
+          <div id="overlay" class="overlay">
+            <div class="overlay-content">
+              <h2 id="overlayTitle">TETRIS</h2>
+              <p id="overlayMessage">Tekan butang di bawah atau SPACE untuk mula!</p>
+              <button id="startBtn" class="btn btn-primary pulse">MULA MAIN</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Panel Kanan: Seterusnya (Next) & Kawalan Keyboard -->
+      <aside class="side-panel right-panel">
+        <div class="card glass-card">
+          <div class="card-title">SETERUSNYA</div>
+          <canvas id="nextCanvas" width="120" height="120"></canvas>
+        </div>
+
+        <div class="card glass-card controls-card">
+          <div class="card-title">KAWALAN KEYBOARD</div>
+          <ul class="controls-list">
+            <li>
+              <span class="key-combo"><kbd>◀</kbd> <kbd>▶</kbd> / <kbd>A</kbd> <kbd>D</kbd></span>
+              <span class="action-desc">Gerak Kiri / Kanan</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>▲</kbd> / <kbd>W</kbd></span>
+              <span class="action-desc">Pusing (Rotate)</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>▼</kbd> / <kbd>S</kbd></span>
+              <span class="action-desc">Jatuh Lembut (Soft Drop)</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>SPACE</kbd></span>
+              <span class="action-desc">Jatuh Terus (Hard Drop)</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>C</kbd> / <kbd>SHIFT</kbd></span>
+              <span class="action-desc">Simpan Blok (Hold)</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>P</kbd> / <kbd>ESC</kbd></span>
+              <span class="action-desc">Jeda (Pause)</span>
+            </li>
+            <li>
+              <span class="key-combo"><kbd>R</kbd></span>
+              <span class="action-desc">Mula Semula (Restart)</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="game-footer">
+      <p>💡 Petua: Gunakan <strong>Hard Drop (Spacebar)</strong> untuk mata bonus dan refleks pantas!</p>
+    </footer>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
